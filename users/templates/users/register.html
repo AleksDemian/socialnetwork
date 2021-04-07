@@ -6,7 +6,7 @@
     <div class="col-sm-9 col-md-9 col-lg-7 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
-          <h5 class="card-title text-center"><b>Register</b></h5>
+          <h5 class="card-title text-center"><b>Реєстрація</b></h5>
           <form class="form-signin" method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -15,17 +15,17 @@
             </fieldset>
             <div class="form-group">
               <button
-                class="btn btn-lg btn-primary btn-block text-uppercase"
-                type="submit"
+                      class="btn btn-lg btn-primary btn-block text-uppercase"
+                      type="submit"
               >
-                Sign Up</button
+                Зареєструйтесь</button
               ><br /><br />
             </div>
             <small
-              ><p class="text-center">
-                Already Registered!
-                <a href="{% url 'login' %}"><b>Login Now!</b></a>
-              </p></small
+            ><p class="text-center">
+              Вже зареєстровані?
+              <a href="{% url 'login' %}"><b>Увійдіть тут!</b></a>
+            </p></small
             >
           </form>
         </div>

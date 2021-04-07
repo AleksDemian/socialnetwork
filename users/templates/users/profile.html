@@ -1,13 +1,13 @@
 {% extends "feed/layout.html" %} {% load static %}
 {% block searchform %}
 <form
-  class="form-inline my-2 my-lg-0 ml-5"
-  action="{% url 'search_users' %}"
-  method="get"
+        class="form-inline my-2 my-lg-0 ml-5"
+        action="{% url 'search_users' %}"
+        method="get"
 >
-  <input name="q" type="text" placeholder="Search users.." />
+  <input name="q" type="text" placeholder="Пошук друзів.." />
   <button class="btn btn-success my-2 my-sm-0 ml-4" type="submit">
-    Search
+    Шукати
   </button>
 </form>
 {% endblock searchform %}
@@ -24,38 +24,38 @@
               <div class="card-profile-image">
                 <a href="{{ u.profile.image.url }}">
                   <img
-                    src="{{ u.profile.image.url }}"
-                    class="rounded-circle"
-                    width="160px"
-                    height="160px"
+                          src="{{ u.profile.image.url }}"
+                          class="rounded-circle"
+                          width="160px"
+                          height="160px"
                   />
                 </a>
               </div>
             </div>
           </div>
           <div
-            class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
+                  class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
           ></div>
           <div class="card-body pt-0 pt-md-4">
             <div class="row">
               <div class="col">
                 <div
-                  class="card-profile-stats d-flex justify-content-center mt-md-5"
+                        class="card-profile-stats d-flex justify-content-center mt-md-5"
                 >
                   <div>
                     <span class="heading">{{ u.profile.friends.count }}</span>
                     {% if request.user == u %}
                     <span class="description"
-                      ><a href="{% url 'friend_list' %}">Friends</a></span
+                    ><a href="{% url 'friend_list' %}">Друзі</a></span
                     >
                     {% else %}
-                    <span class="description">Friends</span>
+                    <span class="description">Друзі</span>
                     {% endif %}
                     <span class="heading">{{ post_count }}</span>
                     <span class="description"
-                      ><a href="{% url 'user-posts' u.username %}"
-                        >Posts</a
-                      ></span
+                    ><a href="{% url 'user-posts' u.username %}"
+                    >Пости</a
+                    ></span
                     >
                   </div>
                 </div>
@@ -67,46 +67,46 @@
               <hr class="my-2" />
               {% if request.user == u %}
               <a class="btn btn-info" href="{% url 'edit_profile' %}"
-                >Edit Profile</a
+              >Редагувати Профіль</a
               >
               {% else %} {% if button_status == 'not_friend' %}
               <small
-                ><a
-                  class="btn btn-primary"
-                  href="/users/friend-request/send/{{ u.id }}"
-                  >Add Friend</a
-                ></small
+              ><a
+                      class="btn btn-primary"
+                      href="/users/friend-request/send/{{ u.id }}"
+              >Добавити друга</a
+              ></small
               >
               {% elif button_status == 'friend_request_sent' %}
               <small
-                ><a
-                  class="btn btn-warning"
-                  href="/users/friend-request/cancel/{{ u.id }}"
-                  >Cancel Request</a
-                ></small
+              ><a
+                      class="btn btn-warning"
+                      href="/users/friend-request/cancel/{{ u.id }}"
+              >Скасувати запит</a
+              ></small
               >
               {% elif button_status == 'friend_request_received' %}
               <small
-                ><a
-                  class="btn btn-success mr-2"
-                  href="/users/friend-request/accept/{{ u.id }}"
-                  >Accept Request</a
-                ></small
+              ><a
+                      class="btn btn-success mr-2"
+                      href="/users/friend-request/accept/{{ u.id }}"
+              >Прийняти запит</a
+              ></small
               >
               <small
-                ><a
-                  class="btn btn-danger"
-                  href="/users/friend-request/delete/{{ u.id }}"
-                  >Reject Request</a
-                ></small
+              ><a
+                      class="btn btn-danger"
+                      href="/users/friend-request/delete/{{ u.id }}"
+              >Відхилити запит</a
+              ></small
               >
               {% else %}
               <small
-                ><a
-                  class="btn btn-danger"
-                  href="/users/friend/delete/{{ u.id }}"
-                  >UnFriend</a
-                ></small
+              ><a
+                      class="btn btn-danger"
+                      href="/users/friend/delete/{{ u.id }}"
+              >Відхилити дружбу</a
+              ></small
               >
               {% endif %} {% endif %}
             </div>
@@ -120,27 +120,27 @@
       <div class="col-md-6">
         <div class="card card-signin my-5">
           <div class="card-body">
-            <h2>Friend Requests Sent ({{ sent_friend_requests.count }})</h2>
+            <h2>Надіслані запити друзям  ({{ sent_friend_requests.count }})</h2>
             <hr class="my-2" />
             {% if not sent_friend_requests %}
-            <h5><i>No sent requests!</i></h5>
+            <h5><i>Немає надісланих запитів!</i></h5>
             {% else %} {% for s_request in sent_friend_requests %}
             <a href="{{ s_request.to_user.profile.get_absolute_url }}"
-              ><img
-                src="{{ s_request.to_user.profile.image.url }}"
-                class="rounded mr-2"
-                width="40"
-                height="40"
-                alt=""
+            ><img
+                    src="{{ s_request.to_user.profile.image.url }}"
+                    class="rounded mr-2"
+                    width="40"
+                    height="40"
+                    alt=""
             /></a>
             <a href="{{ s_request.to_user.profile.get_absolute_url }}"
-              ><b>{{ s_request.to_user.username }}</b></a
+            ><b>{{ s_request.to_user.username }}</b></a
             >
             <small class="float-right">
               <a
-                class="btn btn-warning mr-2"
-                href="{% url 'cancel_friend_request' s_request.to_user.id %}"
-                >Cancel</a
+                      class="btn btn-warning mr-2"
+                      href="{% url 'cancel_friend_request' s_request.to_user.id %}"
+              >Скасувати</a
               >
             </small>
             <br /><br />
@@ -151,34 +151,34 @@
       <div class="col-md-6">
         <div class="card card-signin my-5">
           <div class="card-body">
-            <h2>Friend Requests Recieved ({{ rec_friend_requests.count }})</h2>
+            <h2>Отримані запити від друзів ({{ rec_friend_requests.count }})</h2>
             <hr class="my-2" />
             {% if not rec_friend_requests %}
-            <h5><i>No recieved requests!</i></h5>
+            <h5><i>Жодних отриманих запитів!</i></h5>
             {% else %} {% for r_request in rec_friend_requests %}
             <a href="{{ r_request.from_user.profile.get_absolute_url }}"
-              ><img
-                src="{{ r_request.from_user.profile.image.url }}"
-                class="rounded mr-2"
-                width="40"
-                height="40"
-                alt=""
+            ><img
+                    src="{{ r_request.from_user.profile.image.url }}"
+                    class="rounded mr-2"
+                    width="40"
+                    height="40"
+                    alt=""
             /></a>
             <a
-              class="mr-2 align-middle"
-              href="{{ r_request.from_user.profile.get_absolute_url }}"
-              ><b>{{ r_request.from_user.username }}</b>
+                    class="mr-2 align-middle"
+                    href="{{ r_request.from_user.profile.get_absolute_url }}"
+            ><b>{{ r_request.from_user.username }}</b>
             </a>
             <small class="float-right">
               <a
-                class="btn btn-success mr-2"
-                href="{% url 'accept_friend_request' r_request.from_user.id %}"
-                >Accept</a
+                      class="btn btn-success mr-2"
+                      href="{% url 'accept_friend_request' r_request.from_user.id %}"
+              >Прийняти</a
               >
               <a
-                class="btn btn-danger"
-                href="{% url 'delete_friend_request' r_request.from_user.id %}"
-                >Reject</a
+                      class="btn btn-danger"
+                      href="{% url 'delete_friend_request' r_request.from_user.id %}"
+              >Відхилити</a
               >
             </small>
             <br /><br />

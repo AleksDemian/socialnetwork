@@ -20,7 +20,7 @@ def users_list(request):
     my_friends = request.user.profile.friends.all()
     sent_to = []
     friends = []
-    for user in users:
+    for user in my_friends:
         friend = user.friends.all()
         for f in friend:
             if f in friends:
