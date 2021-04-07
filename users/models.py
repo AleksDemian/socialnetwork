@@ -12,7 +12,7 @@ class Profile(models.Model):
     image = models.ImageField(default='default.png', upload_to='profile_pics')
     slug = AutoSlugField(populate_from='user')
     bio = models.CharField(max_length=255, blank=True)
-    friends = models.ManyToManyField("Profile", blank=True)
+    friends = models.ManyToManyField('Profile', blank=True)
 
     def __str__(self):
         return str(self.user.username)

@@ -12,10 +12,12 @@ import random
 
 User = get_user_model()
 
+
 @login_required
 def users_list(request):
     users = Profile.objects.exclude(user=request.user)
-    sent_friend_request = FriendRequest.objects.filter(from_user=request.user)
+    sent_friend_requests = FriendRequest.objects.filter(from_user=request.user)
+    my_friends = request.user.profile.friends.all()
     sent_to = []
     friends = []
     for user in users:
@@ -24,7 +26,6 @@ def users_list(request):
             if f in friends:
                 friend = friend.exclude(user=f.user)
         friends += friend
-    my_friends = request.user.profile.friends.all()
     for i in my_friends:
         if i in friends:
             friends.remove(i)
@@ -38,7 +39,7 @@ def users_list(request):
     for i in my_friends:
         if i in friends:
             friends.remove(i)
-    for se in sent_friend_request:
+    for se in sent_friend_requests:
         sent_to.append(se.to_user)
     context = {
         'users': friends,
@@ -57,28 +58,25 @@ def friend_list(request):
 
 
 @login_required
-def send_friend_request(request, id):
-    user = get_object_or_404(User, id=id)
-    frequest, created = FriendRequest.objects.get_or_create(
-        from_user=request.user,
-        to_user=user
-    )
+def send_friend_request(request, id_):
+    user = get_object_or_404(User, id=id_)
+    frequest, create = FriendRequest.objects.get_or_create(from_user=request.user, to_user=user)
     return HttpResponseRedirect('/users/{}'.format(user.profile.slug))
 
 
 @login_required
-def cancel_friend_request(request, id):
-    user = get_object_or_404(User, id=id)
+def cancel_friend_request(request, id_):
+    user = get_object_or_404(User, id=id_)
     frequest = FriendRequest.objects.filter(
-        from_user = request.user,
+        from_user=request.user,
         to_user=user).first()
     frequest.delete()
     return HttpResponseRedirect('/users/{}'.format(user.profile.slug))
 
 
 @login_required
-def accept_friend_request(request, id):
-    from_user = get_object_or_404(User, id=id)
+def accept_friend_request(request, id_):
+    from_user = get_object_or_404(User, id=id_)
     frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
     user1 = frequest.to_user
     user2 = from_user
@@ -92,16 +90,16 @@ def accept_friend_request(request, id):
 
 
 @login_required
-def delete_friend_request(request, id):
-    from_user = get_object_or_404(User, id=id)
+def delete_friend_request(request, id_):
+    from_user = get_object_or_404(User, id=id_)
     frequest = FriendRequest.objects.filter(from_user=from_user, to_user=request.user).first()
     frequest.delete()
     return HttpResponseRedirect('/users/{}'.format(request.user.profile.slug))
 
 
-def delete_friend(request, id):
+def delete_friend(request, id_):
     user_profile = request.user.profile
-    friend_profile = get_object_or_404(Profile, id=id)
+    friend_profile = get_object_or_404(Profile, id=id_)
     user_profile.friends.remove(friend_profile)
     friend_profile.friends.remove(user_profile)
     return HttpResponseRedirect('/users/{}'.format(friend_profile.slug))
@@ -167,7 +165,7 @@ def edit_profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-    context ={
+    context = {
         'u_form': u_form,
         'p_form': p_form
     }
@@ -178,9 +176,10 @@ def edit_profile(request):
 def my_profile(request):
     p = request.user.profile
     you = p.user
-    sent_friend_requests = FriendRequest.objects.filter(form_user=you)
+    sent_friend_requests = FriendRequest.objects.filter(from_user=you)
     rec_friend_requests = FriendRequest.objects.filter(to_user=you)
     user_posts = Post.objects.filter(user_name=you)
+
     friends = p.friends.all()
 
     button_status = 'none'
@@ -190,7 +189,7 @@ def my_profile(request):
         if len(FriendRequest.objects.filter(from_user=request.user).filter(to_user=you)) == 1:
             button_status = 'friend_request_sent'
 
-        if len(FriendRequest.objects.filter(from_user=p.user).filter(to_user=request.user)) == 1:
+        if len(FriendRequest.objects.filter(from_user=you).filter(to_user=request.user)) == 1:
             button_status = 'friend_request_received'
 
     context = {
@@ -198,7 +197,7 @@ def my_profile(request):
         'button_status': button_status,
         'friends_list': friends,
         'sent_friend_requests': sent_friend_requests,
-        'rec_friends_requests': rec_friend_requests,
+        'rec_friend_requests': rec_friend_requests,
         'post_count': user_posts.count
     }
 
@@ -212,4 +211,4 @@ def search_users(request):
     context = {
         'users': object_list
     }
-    return render(request,'users/search_users.html', context)
+    return render(request, 'users/search_users.html', context)
