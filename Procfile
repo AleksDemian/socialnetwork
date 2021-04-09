@@ -1,1 +1,1 @@
-web: gunicorn photoshare.wsgi
+web: gunicorn socialnetwork.wsgi
