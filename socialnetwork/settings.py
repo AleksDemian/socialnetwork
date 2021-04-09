@@ -25,7 +25,9 @@ SECRET_KEY = '4c9j8f%(xw9-qjepmd626i8%9i-7iz2lt^lz*5dfvd@a5(&-wg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'stormy-dusk-59269.herokuapp.com'
+]
 
 
 # Application definition
