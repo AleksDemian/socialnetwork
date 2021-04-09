@@ -8,7 +8,6 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 import random
-
 from rest_framework import generics, permissions
 from . import serializers
 from .premissions import UserOwnerOrReadOnly, PostOwnerOrReadOnly, CommentOwnerOrReadOnly
