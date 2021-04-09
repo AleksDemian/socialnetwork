@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, FriendRequest
-from feed.models import Post
+from feed.models import Post, Comments
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -9,6 +9,10 @@ from django.http import HttpResponseRedirect
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 import random
 
+from rest_framework import generics, permissions
+from . import serializers
+from .premissions import UserOwnerOrReadOnly, PostOwnerOrReadOnly, CommentOwnerOrReadOnly
+from .serializers import PostSerializer, UserSerializer
 
 User = get_user_model()
 
@@ -212,3 +216,44 @@ def search_users(request):
         'users': object_list
     }
     return render(request, 'users/search_users.html', context)
+
+
+class UserList(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = serializers.UserSerializer
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, UserOwnerOrReadOnly]
+
+
+class PostList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user_name=self.request.user)
+
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, PostOwnerOrReadOnly]
+
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comments.objects.all()
+    serializer_class = serializers.CommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(username=self.request.user)
+
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comments.objects.all()
+    serializer_class = serializers.CommentSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, CommentOwnerOrReadOnly]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 from .views import PostUpdateView, PostListView, UserPostListView
 
@@ -12,3 +12,5 @@ urlpatterns = [
     path('search_posts/', views.search_posts, name='search_posts'),
     path('user_posts/<str:username>/', UserPostListView.as_view(), name='user-posts'),
 ]
+
+

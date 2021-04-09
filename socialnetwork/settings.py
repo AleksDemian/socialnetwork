@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'feed.apps.FeedConfig',
     'crispy_forms',
+    'stdimage',
+    'rest_framework',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -78,8 +80,12 @@ WSGI_APPLICATION = 'socialnetwork.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
+        'USER': 'postgres',
+        'PASSWORD': 'qwerasdf456',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -138,3 +144,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+

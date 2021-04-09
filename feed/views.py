@@ -1,15 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from .forms import NewCommentForm, NewPostForm
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
 from django.contrib.auth.decorators import login_required
+from rest_framework import generics
 
 
-class PostListView(ListView):
+class PostListView(ListView, generics.ListAPIView):
     model = Post
     template_name = 'feed/home.html'
     context_object_name = 'posts'

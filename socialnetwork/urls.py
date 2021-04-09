@@ -19,6 +19,8 @@ from users import views as user_views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 urlpatterns = [
     path('', include('feed.urls')),
@@ -45,7 +47,16 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('apiusers/', user_views.UserList.as_view()),
+    path('apiusers/<int:pk>', user_views.UserDetail.as_view()),
+    path('apiposts/', user_views.PostList.as_view()),
+    path('apiposts/<int:pk>/', user_views.PostDetail.as_view()),
+    path('apicomments/', user_views.CommentList.as_view()),
+    path('apicomments/<int:pk>/', user_views.CommentDetail.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
