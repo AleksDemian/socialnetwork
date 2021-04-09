@@ -94,6 +94,8 @@ DATABASES = {
     }
 }
 
+os.environ['DATABASE_URL'] = 'postgres://woudpxgkdjvijy:62cc6e55d39d443aeeb5f0b42ba5a10ee0798ee9794cf6b72793f8f737031018@ec2-3-234-85-177.compute-1.amazonaws.com:5432/da4lsashop5cvj'
+
 DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
