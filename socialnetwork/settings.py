@@ -29,7 +29,8 @@ SECRET_KEY = '4c9j8f%(xw9-qjepmd626i8%9i-7iz2lt^lz*5dfvd@a5(&-wg'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'stormy-dusk-59269.herokuapp.com'
+    'stormy-dusk-59269.herokuapp.com',
+    'bormannetwork.herokuapp.com',
 ]
 
 
