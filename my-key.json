@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "socialnetwork-456123",
+  "private_key_id": "4294954cc4e47e899c4739716117a105785a7600",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCXFknr0VZQaiVB\nD4WGSRLOIoqc1CJNGwlevhP5dRPl+rVfOla5/XlAnfld+LjQR00tfVFmvWLw1q4r\nja0Nn4bu7Url6PitwmldW7Ai4Vi5Rhr4g2qltd0oi2xfCCkckzYw7x/MoZxMSP1P\ns4N7Wej/Ap9H5PgR0BLOqgDgyyvdNE3WCixueZqkS8R55KNY8YEmjtZU/NW2M443\nsYQmXOB0wkjLQ5zd1gPnH657sID2twr1k+4EnCuIW+7MAJgN7bz4PcDPu9hNc7ue\nKldqNNyxwV1gbgpBHNmNvhpCBjYkOlX0PcZcDbH58svi8Dl6G/JdRSIGBFM+XIo4\nqjeFYlSNAgMBAAECggEAIsoIkmq8775JPr5mtgGMeXedqDf2f/+qPC0TZ1zsjIea\njMdfoer6KQVXHqq/T4IjhMZ24GvaZO9h4nh4cQsbJFfyZ5cp78S0w0DyAU4XQm4g\nlrmX7HlAZ+4WsZks8j35e/ILxfAuj6g838XLkDMnQdTmPUU9U8iwE/M0SY6u1nuy\nnyS5QHx+VdOBPhQZu3shnTG2RcbUbH3PjPbuxUMFe0nIBFS6Ftj7vIttcyQBmgqP\nsHTpGmXfVnesNbVv37UqYwR39o7mWCsyhNxfSsa9veHkKs8LnIrKVm7sAh16BxD5\n0SQhstIh3cQ8wYKtThHiPwVArv/F7FFSQF90aPK5AQKBgQDGxDgwY2sbQy8RQb5D\nR7p4AY0Jqx+lVU0A2DXiVZSzux1QsCgCcDCvy8yxQwRmM0FqODvrIX9kKapIxB99\nLuZRfYf7huZOOLLAU6YJqk9bs3XoNeODS9fMpHx71cDm18iLepmrIRRjPpxHdZ1y\nl4ZyJOQGG/OKiTBeqbeVud6fDQKBgQDCl3Nm2v4YmqY4WpcSifgjj5ryBOa6Xong\nHsgEttaqpWJyaIDdVZSo4H9ksa3zFUrmO8+iVoeQrf5TAmoQoXtV3RsDleNtI4dv\neottFrGgb0IEJYHx0Jgz/BLmbWYs+qR7dj2V0uRlVqT+a/V3wmQYbPoqhlmc9rOY\nWOVenjErgQKBgEFmtwZU8B0cUhRfiXch1t09xWZ1BAimtJueiLxcZH1vCApQrBmB\nSMPPTx7UalImc1O8BRss/nm6q+kdfy71i5ssrt24WXdLeKWH4I41l78YoacydBXz\nkqInTT6B6uMKBVa/lGiWjdrJ8yogLRpTeU19jfnkoJHo6h17wohljDbRAoGAOdh/\ny8Gp63J9mx8C7dXp19hmvS9Lz3cvEVrVJuGbatsDKvN561H3gURLWomfJjXcMBjz\nnlSOtCmlAtQi55K5cUrrLuOt2dHH/xG0xNcMMp8gRs9Hk7ToqftzOuCmkRRpNPJv\nWEx67M0W+zLoo5M74i7zJxUNKqYDuXQjqz7nawECgYB3YIIwsfk6L2SjxDyi9Guu\nmpYFyRD8/h93qKe7rHacbOK+ItA92/lHhBo48+W1wdCoa8UDpYFEaHeBL1JLKg8e\nXb2dXB/bam6fgirWy/DNLP8aB6Qxnhd1IW6+Xi0hQdGc09b3fd4FEz6cMt+9zBxe\niIG16OlmzdiHfcQUpkd34g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "borman@socialnetwork-456123.iam.gserviceaccount.com",
+  "client_id": "111565651431572588565",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/borman%40socialnetwork-456123.iam.gserviceaccount.com"
+}
