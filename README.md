@@ -1,7 +1,7 @@
 <h1>Social network on Django</h1>
 Technologies used :
 
-Frontend: <b>HTML5, CSS (Bootstrap4)</b><br>
+Frontend: <b>HTML5, CSS (Bootstrap)</b><br>
 Backend: <b>Django</b><br>
 Database: <b>PostgreSQL</b><br>
 Storage: <b>Google Cloud Storage</b><br>
